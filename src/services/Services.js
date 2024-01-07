@@ -9,13 +9,13 @@ class Services {
     return dataSource[this.model].findAll();
   }
 
-  // async find(id) {
-  //   return dataSource[this.model].findByPk(id);
-  // }
+  async find(id) {
+    return dataSource[this.model].findByPk(id);
+  }
 
-  // async create(data) {
-  //   return dataSource[this.model].create(data);
-  // }
+  async create(data) {
+    return dataSource[this.model].create(data);
+  }
 
   async update(data, id) {
     const results = dataSource[this.model].update(data, {
@@ -24,9 +24,9 @@ class Services {
     return !(results[0] === 0);
   }
 
-  // async delete(id) {
-  //   return dataSource[this.model].destroy({ where: { id: id } });
-  // }
+  async delete(id) {
+    return dataSource[this.model].destroy({ where: { id: id } });
+  }
 }
 
 module.exports = Services;
