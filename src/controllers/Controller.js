@@ -8,7 +8,7 @@ class Controller {
       const results = await this.service.list();
       return res.status(200).json(results);
     } catch (error) {
-      // erro
+      return res.status(500).json(error.message);
     }
   }
 
@@ -17,8 +17,8 @@ class Controller {
     try {
       const result = await this.service.find(Number(id));
       return res.status(200).json(result);
-    } catch (erro) {
-      // erro
+    } catch (error) {
+      return res.status(500).json(error.message);
     }
   }
 
@@ -27,8 +27,8 @@ class Controller {
     try {
       const result = await this.service.create(data);
       return res.status(200).json(result);
-    } catch (erro) {
-      // erro
+    } catch (error) {
+      return res.status(500).json(error.message);
     }
   }
 
@@ -41,8 +41,8 @@ class Controller {
         return res.status(400).json({ mensagem: 'registro não foi atualizado' });
       }
       return res.status(200).json({ mensagem: 'Atualizado com sucesso' });
-    } catch (erro) {
-      // erro
+    } catch (error) {
+      return res.status(500).json(error.message);
     }
   }
 
@@ -51,8 +51,6 @@ class Controller {
     try {
       await this.service.delete(Number(id));
       return res.status(200).json({ mensagem: `id ${id} deletado` });
-
-
     } catch (error) {
       return res.status(500).json(error.message);
     }
