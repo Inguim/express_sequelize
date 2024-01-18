@@ -14,7 +14,16 @@ class PessoaController extends Controller {
       const data = await pessoaServices.listMatriculasByEstudante(Number(estudanteId));
       return res.status(200).json(data);
     } catch (error) {
-      // erro
+      return res.status(500).json({ erro: error.message });
+    }
+  }
+
+  async listByScope (req, res) {
+    try {
+      const data = await pessoaServices.listByScope();
+      return res.status(200).json(data);
+    } catch (error) {
+      return res.status(500).json({ erro: error.message });
     }
   }
 }

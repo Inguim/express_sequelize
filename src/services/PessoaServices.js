@@ -8,8 +8,11 @@ class PessoaServices extends Services {
   async listMatriculasByEstudante(id) {
     const pessoa = await super.find(id);
     const matriculas = await pessoa.getAulasMatriculadas();
-    console.log('oi', matriculas);
     return matriculas;
+  }
+
+  async listByScope() {
+    return await super.listByScope('allDatas');
   }
 }
 

@@ -8,10 +8,15 @@ class Services {
   async list() {
     return dataSource[this.model].findAll();
   }
+  
+  async listByScope(scope){
+    return dataSource[this.model].scope(scope).findAll();
+  }
 
   async find(id) {
     return dataSource[this.model].findByPk(id);
   }
+
 
   async create(data) {
     return dataSource[this.model].create(data);
