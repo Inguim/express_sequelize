@@ -1,3 +1,5 @@
+const stringConversor = require('../utils/helpers/stringConversor.js');
+
 class Controller {
   constructor (service) {
     this.service = service;
@@ -16,6 +18,17 @@ class Controller {
     const { id } = req.params;
     try {
       const result = await this.service.find(Number(id));
+      return res.status(200).json(result);
+    } catch (error) {
+      return res.status(500).json({ erro: error.message });
+    }
+  }
+
+  async findOneWhere(req, res) {
+    const { ...params } = req.params;
+    const query = stringConversor(params);
+    try {
+      const result = await this.service.findOneWhere(query);
       return res.status(200).json(result);
     } catch (error) {
       return res.status(500).json({ erro: error.message });

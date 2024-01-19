@@ -13,8 +13,9 @@ router.post('/pessoas', (req, res) => pessoaController.create(req, res));
 router.put('/pessoas/:id', (req, res) => pessoaController.update(req, res));
 router.delete('/pessoas/:id', (req, res) => pessoaController.delete(req, res));
 
-router.get('/pessoas/:estudanteId/matriculas', (req, res) => pessoaController.listMatriculasActive(req, res));
-router.get('/pessoas/:estudanteId/matriculas/all', (req, res) => pessoaController.listAllMatriculas(req, res));
-router.post('/pessoas/:estudanteId/matriculas', (req, res) => matriculaController.create(req, res));
+router.get('/pessoas/:estudante_id/matriculas', (req, res) => pessoaController.listMatriculasActive(req, res));
+router.get('/pessoas/:estudante_id/matriculas/all', (req, res) => pessoaController.listAllMatriculas(req, res));
+router.get('/pessoas/:estudante_id/matriculas/:id', (req, res) => pessoaController.findOneWhere(req, res));
+router.post('/pessoas/:estudante_id/matriculas', (req, res) => matriculaController.create(req, res));
 
 module.exports = router;

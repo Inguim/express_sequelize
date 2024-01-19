@@ -17,6 +17,9 @@ class Services {
     return dataSource[this.model].findByPk(id);
   }
 
+  async findOneWhere(where = {}) {
+    return dataSource[this.model].findOne({ where });
+  }
 
   async create(data) {
     return dataSource[this.model].create(data);
