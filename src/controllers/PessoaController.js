@@ -8,10 +8,20 @@ class PessoaController extends Controller {
     super(pessoaServices);
   }
 
-  async listMatriculas (req, res) {
+  async listMatriculasActive (req, res) {
     const { estudanteId } = req.params;
     try {
-      const data = await pessoaServices.listMatriculasByEstudante(Number(estudanteId));
+      const data = await pessoaServices.listMatriculasActiveByEstudante(Number(estudanteId));
+      return res.status(200).json(data);
+    } catch (error) {
+      return res.status(500).json({ erro: error.message });
+    }
+  }
+
+  async listAllMatriculas (req, res) {
+    const { estudanteId } = req.params;
+    try {
+      const data = await pessoaServices.listMatriculasAllByEstudante(Number(estudanteId));
       return res.status(200).json(data);
     } catch (error) {
       return res.status(500).json({ erro: error.message });
