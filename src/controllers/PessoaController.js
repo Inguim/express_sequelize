@@ -9,9 +9,9 @@ class PessoaController extends Controller {
   }
 
   async listMatriculasActive (req, res) {
-    const { estudanteId } = req.params;
+    const { estudante_id } = req.params;
     try {
-      const data = await pessoaServices.listMatriculasActiveByEstudante(Number(estudanteId));
+      const data = await pessoaServices.listMatriculasActiveByEstudante(Number(estudante_id));
       return res.status(200).json(data);
     } catch (error) {
       return res.status(500).json({ erro: error.message });
@@ -19,9 +19,9 @@ class PessoaController extends Controller {
   }
 
   async listAllMatriculas (req, res) {
-    const { estudanteId } = req.params;
+    const { estudante_id } = req.params;
     try {
-      const data = await pessoaServices.listMatriculasAllByEstudante(Number(estudanteId));
+      const data = await pessoaServices.listMatriculasAllByEstudante(Number(estudante_id));
       return res.status(200).json(data);
     } catch (error) {
       return res.status(500).json({ erro: error.message });

@@ -8,8 +8,8 @@ class Services {
   async list() {
     return dataSource[this.model].findAll();
   }
-  
-  async listByScope(scope){
+
+  async listByScope(scope) {
     return dataSource[this.model].scope(scope).findAll();
   }
 
@@ -25,9 +25,9 @@ class Services {
     return dataSource[this.model].create(data);
   }
 
-  async update(data, id) {
+  async update(data, where = {}) {
     const results = dataSource[this.model].update(data, {
-      where: { id: id },
+      where,
     });
     return !(results[0] === 0);
   }
