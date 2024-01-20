@@ -5,47 +5,47 @@ class Controller {
     this.service = service;
   }
 
-  async list(req, res) {
+  async list(req, res, next) {
     try {
       const results = await this.service.list();
       return res.status(200).json(results);
     } catch (error) {
-      return res.status(500).json({ erro: error.message });
+      next(error);
     }
   }
 
-  async find(req, res) {
+  async find(req, res, next) {
     const { id } = req.params;
     try {
       const result = await this.service.find(Number(id));
       return res.status(200).json(result);
     } catch (error) {
-      return res.status(500).json({ erro: error.message });
+      next(error);
     }
   }
 
-  async findOne(req, res) {
+  async findOne(req, res, next) {
     const { ...params } = req.params;
     const query = stringConversor(params);
     try {
       const result = await this.service.findOne(query);
       return res.status(200).json(result);
     } catch (error) {
-      return res.status(500).json({ erro: error.message });
+      next(error);
     }
   }
 
-  async create(req, res) {
+  async create(req, res, next) {
     const data = req.body;
     try {
       const result = await this.service.create(data);
       return res.status(200).json(result);
     } catch (error) {
-      return res.status(500).json({ erro: error.message });
+      next(error);
     }
   }
 
-  async update(req, res) {
+  async update(req, res, next) {
     const { ...params } = req.params;
     const data = req.body;
     const where = stringConversor(params);
@@ -56,17 +56,17 @@ class Controller {
       }
       return res.status(200).json({ mensagem: 'Atualizado com sucesso' });
     } catch (error) {
-      return res.status(500).json({ erro: error.message });
+      next(error);
     }
   }
 
-  async delete(req, res) {
+  async delete(req, res, next) {
     const { id } = req.params;
     try {
       await this.service.delete(Number(id));
       return res.status(200).json({ mensagem: `id ${id} deletado` });
     } catch (error) {
-      return res.status(500).json({ erro: error.message });
+      next(error);
     }
   }
 }

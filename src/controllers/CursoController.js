@@ -10,7 +10,7 @@ class CursoController extends Controller {
     super(cursoServices);
   }
 
-  async listByDate(req, res){ 
+  async listByDate(req, res, next){ 
     const { data_inicial, data_final } = req.query;
     const where = {};
     data_inicial || data_final ? where.data_inicio = {} : null;
@@ -20,7 +20,7 @@ class CursoController extends Controller {
       const data = await cursoServices.list(where);
       return res.status(200).json(data);
     } catch (error) {
-      return res.status(500).json({ error: error.message });
+      next(error);
     } 
   }
 }

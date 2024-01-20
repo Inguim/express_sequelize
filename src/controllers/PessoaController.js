@@ -10,44 +10,44 @@ class PessoaController extends Controller {
     super(pessoaServices);
   }
 
-  async listMatriculasActive (req, res) {
+  async listMatriculasActive (req, res, next) {
     const { estudante_id } = req.params;
     try {
       const data = await pessoaServices.listMatriculasActiveByEstudante(Number(estudante_id));
       return res.status(200).json(data);
     } catch (error) {
-      return res.status(500).json({ erro: error.message });
+      next(error);
     }
   }
 
-  async listAllMatriculas (req, res) {
+  async listAllMatriculas (req, res, next) {
     const { estudante_id } = req.params;
     try {
       const data = await pessoaServices.listMatriculasAllByEstudante(Number(estudante_id));
       return res.status(200).json(data);
     } catch (error) {
-      return res.status(500).json({ erro: error.message });
+      next(error);
     }
   }
 
-  async listByScope (req, res) {
+  async listByScope (req, res, next) {
     let { scope = PESSOA_SCOPES.ALL } = req.params;
     scope = Object.values(PESSOA_SCOPES).find(v => v === scope) || PESSOA_SCOPES.ALL;
     try {
       const data = await pessoaServices.listByScope(scope);
       return res.status(200).json(data);
     } catch (error) {
-      return res.status(500).json({ erro: error.message });
+      next(error);
     }
   }
 
-  async cancelRegistroEstudante (req, res) {
+  async cancelRegistroEstudante (req, res, next) {
     const { estudante_id } = req.params;
     try {
       await pessoaServices.cancelMatriculas(Number(estudante_id));
       return res.status(200).json({ message: `matriculas ref. estudante ${estudante_id}` });
     } catch (error) {
-      return res.status(500).json({ erro: error.message });
+      next(error);
     }
   }
 }

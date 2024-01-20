@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           len: {
             args: [3, 30],
-            msg: 'o campo \'nome\' deve ter no mínimo 3 caracteres',
+            msg: 'O campo \'nome\' deve ter no mínimo 3 caracteres',
           },
         },
       },
@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           isEmail: {
             args: true,
-            msg: 'formato do e-mail inválido',
+            msg: 'Formato do \'e-mail\' inválido',
           },
         },
       },
@@ -44,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         validate: {
           isValid: (value) => {
-            if (!isValidCpf(value)) throw new Error('número de \'cpf\' inválido');
+            if (!isValidCpf(value)) throw new Error('Número de \'cpf\' inválido');
             return true;
           }
         },

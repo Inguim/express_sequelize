@@ -9,7 +9,7 @@ class MatriculaController extends Controller {
     super(matriculaServices);
   }
 
-  async listMatriculasByEstudante(req, res) {
+  async listMatriculasByEstudante(req, res, next) {
     const { estudante_id } = req.params;
     try {
       const data = await matriculaServices.listAndCount({
@@ -22,11 +22,11 @@ class MatriculaController extends Controller {
       });
       return res.status(200).json(data);
     } catch (error) {
-      return res.status(500).json({ error: error.message });
+      next(error);
     }
   }
 
-  async listCursosLotados(req, res) {
+  async listCursosLotados(req, res, next) {
     const lotacaoCurso = 2;
     try {
       const data = await matriculaServices.listAndCount({
@@ -37,7 +37,7 @@ class MatriculaController extends Controller {
       });
       return res.status(200).json(data.count);
     } catch (error) {
-      return res.status(500).json({ error: error.message });
+      next(error);
     }
   }
 }

@@ -4,10 +4,10 @@ const CursoController = require('../controllers/CursoController.js');
 const router = Router();
 const cursoController = new CursoController();
 
-router.get('/cursos', (req, res) => cursoController.listByDate(req, res));
-router.get('/cursos/:id', (req, res) => cursoController.find(req, res));
-router.post('/cursos', (req, res) => cursoController.create(req, res));
-router.put('/cursos/:id', (req, res) => cursoController.update(req, res));
-router.delete('/cursos/:id', (req, res) => cursoController.delete(req, res));
+router.get('/cursos', (req, res, next) => cursoController.listByDate(req, res, next));
+router.get('/cursos/:id', (req, res, next) => cursoController.find(req, res, next));
+router.post('/cursos', (req, res, next) => cursoController.create(req, res, next));
+router.put('/cursos/:id', (req, res, next) => cursoController.update(req, res, next));
+router.delete('/cursos/:id', (req, res, next) => cursoController.delete(req, res, next));
 
 module.exports = router;
