@@ -1,3 +1,5 @@
+const { PESSOA_SCOPES } = require('../database/constants/scopes.js');
+
 const Controller = require('./Controller.js');
 const PessoaServices = require('../services/PessoaServices.js');
 
@@ -29,8 +31,10 @@ class PessoaController extends Controller {
   }
 
   async listByScope (req, res) {
+    let { scope = PESSOA_SCOPES.ALL } = req.params;
+    scope = Object.values(PESSOA_SCOPES).find(v => v === scope) || PESSOA_SCOPES.ALL;
     try {
-      const data = await pessoaServices.listByScope();
+      const data = await pessoaServices.listByScope(scope);
       return res.status(200).json(data);
     } catch (error) {
       return res.status(500).json({ erro: error.message });

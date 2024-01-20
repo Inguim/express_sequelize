@@ -1,5 +1,6 @@
 'use strict';
 const { Model } = require('sequelize');
+const { PESSOA_SCOPES } = require('../constants/scopes.js');
 const isValidCpf = require('../../utils/helpers/validateCpf.js');
 
 module.exports = (sequelize, DataTypes) => {
@@ -62,7 +63,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       scopes: {
-        allDatas: {
+        [PESSOA_SCOPES.ALL]: {
           where: {},
         },
       },

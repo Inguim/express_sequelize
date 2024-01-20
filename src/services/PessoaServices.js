@@ -1,4 +1,5 @@
 const datasource = require('../database/models');
+
 const Services = require('./Services.js');
 
 class PessoaServices extends Services {
@@ -19,8 +20,8 @@ class PessoaServices extends Services {
     return matriculas;
   }
 
-  async listByScope() {
-    return await super.listByScope('allDatas');
+  async listByScope(scope) {
+    return await super.listByScope(scope);
   }
 
   async cancelMatriculas(estudante_id) {
