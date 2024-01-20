@@ -5,8 +5,8 @@ class Services {
     this.model = model;
   }
 
-  async list() {
-    return dataSource[this.model].findAll();
+  async list(where = {}) {
+    return dataSource[this.model].findAll({ where });
   }
 
   async listByScope(scope) {
