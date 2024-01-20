@@ -21,12 +21,12 @@ class Services {
     return dataSource[this.model].findByPk(id);
   }
 
-  async findOneWhere(where = {}) {
-    return dataSource[this.model].findOne({ where });
+  async findOne(options = {}) {
+    return dataSource[this.model].findOne({ ...options });
   }
 
-  async create(data) {
-    return dataSource[this.model].create(data);
+  async create(data, options = {}) {
+    return dataSource[this.model].create(data, options);
   }
 
   async update(data, where = {}, transaction = {}) {
@@ -37,8 +37,8 @@ class Services {
     return !(results[0] === 0);
   }
 
-  async delete(id) {
-    return dataSource[this.model].destroy({ where: { id: id } });
+  async delete(id, options) {
+    return dataSource[this.model].destroy({ where: { id: id }, ...options });
   }
 }
 
