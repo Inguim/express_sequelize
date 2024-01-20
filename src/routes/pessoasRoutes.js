@@ -15,6 +15,7 @@ router.delete('/pessoas/:id', (req, res) => pessoaController.delete(req, res));
 
 router.get('/pessoas/:estudante_id/matriculas', (req, res) => pessoaController.listMatriculasActive(req, res));
 router.get('/pessoas/:estudante_id/matriculas/all', (req, res) => pessoaController.listAllMatriculas(req, res));
+router.get('/pessoas/:estudante_id/matriculas/confirmed', (req, res) => matriculaController.listMatriculasByEstudante(req, res));
 router.get('/pessoas/:estudante_id/matriculas/:id', (req, res) => matriculaController.findOneWhere(req, res));
 router.post('/pessoas/:estudante_id/matriculas', (req, res) => matriculaController.create(req, res));
 router.put('/pessoas/:estudante_id/matriculas/:id', (req, res) => matriculaController.update(req, res));

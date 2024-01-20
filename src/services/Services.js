@@ -13,6 +13,10 @@ class Services {
     return dataSource[this.model].scope(scope).findAll();
   }
 
+  async listAndCount(where = {}) {
+    return dataSource[this.model].findAndCountAll({ where, limit: 20, order: [['id', 'DESC']] });
+  }
+
   async find(id) {
     return dataSource[this.model].findByPk(id);
   }
