@@ -8,7 +8,7 @@ class Controller {
   async list(req, res, next) {
     try {
       const results = await this.service.list();
-      return res.status(200).json(results);
+      return res.status(200).json({ count: results.length, results });
     } catch (error) {
       next(error);
     }
@@ -52,9 +52,9 @@ class Controller {
     try {
       const result = await this.service.update(data, where);
       if (!result) {
-        return res.status(400).json({ mensagem: 'registro não foi atualizado' });
+        return res.status(400).json({ message: 'registro não foi atualizado' });
       }
-      return res.status(200).json({ mensagem: 'Atualizado com sucesso' });
+      return res.status(200).json({ message: 'Atualizado com sucesso' });
     } catch (error) {
       next(error);
     }
@@ -64,7 +64,7 @@ class Controller {
     const { id } = req.params;
     try {
       await this.service.delete(Number(id));
-      return res.status(200).json({ mensagem: `id ${id} deletado` });
+      return res.status(200).json({ message: `id ${id} deletado` });
     } catch (error) {
       next(error);
     }

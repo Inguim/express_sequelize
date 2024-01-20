@@ -20,7 +20,7 @@ class MatriculaController extends Controller {
         limit: 2,
         order: [['id', 'DESC']],
       });
-      return res.status(200).json(data);
+      return res.status(200).json({ count: data.length, results: data });
     } catch (error) {
       next(error);
     }
@@ -35,7 +35,7 @@ class MatriculaController extends Controller {
         group: ['curso_id'],
         having: Sequelize.literal(`count(curso_id) >= ${lotacaoCurso}`)
       });
-      return res.status(200).json(data.count);
+      return res.status(200).json({ count: data.count.length, results: data.count });
     } catch (error) {
       next(error);
     }

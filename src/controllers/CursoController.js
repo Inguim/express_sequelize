@@ -18,7 +18,7 @@ class CursoController extends Controller {
     data_final ? where.data_inicio[Op.lte] = data_final : null;
     try {
       const data = await cursoServices.list(where);
-      return res.status(200).json(data);
+      return res.status(200).json({ count: data.length, results: data });
     } catch (error) {
       next(error);
     } 

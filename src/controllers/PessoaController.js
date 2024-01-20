@@ -14,7 +14,7 @@ class PessoaController extends Controller {
     const { estudante_id } = req.params;
     try {
       const data = await pessoaServices.listMatriculasActiveByEstudante(Number(estudante_id));
-      return res.status(200).json(data);
+      return res.status(200).json({ count: data.length, results: data });
     } catch (error) {
       next(error);
     }
@@ -24,7 +24,7 @@ class PessoaController extends Controller {
     const { estudante_id } = req.params;
     try {
       const data = await pessoaServices.listMatriculasAllByEstudante(Number(estudante_id));
-      return res.status(200).json(data);
+      return res.status(200).json({ count: data.length, results: data });
     } catch (error) {
       next(error);
     }
@@ -35,7 +35,7 @@ class PessoaController extends Controller {
     scope = Object.values(PESSOA_SCOPES).find(v => v === scope) || PESSOA_SCOPES.ALL;
     try {
       const data = await pessoaServices.listByScope(scope);
-      return res.status(200).json(data);
+      return res.status(200).json({ count: data.length, results: data });
     } catch (error) {
       next(error);
     }
