@@ -29,9 +29,10 @@ class Services {
     return dataSource[this.model].create(data);
   }
 
-  async update(data, where = {}) {
-    const results = dataSource[this.model].update(data, {
+  async update(data, where = {}, transaction = {}) {
+    const results = await dataSource[this.model].update(data,  {
       where,
+      transaction
     });
     return !(results[0] === 0);
   }
