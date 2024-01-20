@@ -52,7 +52,7 @@ class Controller {
     try {
       const result = await this.service.update(data, where);
       if (!result) {
-        return res.status(400).json({ message: 'registro não foi atualizado' });
+        return res.status(400).json({ message: 'Registro não foi atualizado' });
       }
       return res.status(200).json({ message: 'Atualizado com sucesso' });
     } catch (error) {
